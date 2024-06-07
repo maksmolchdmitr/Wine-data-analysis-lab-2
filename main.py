@@ -155,7 +155,7 @@ def logistic_regression(df):
 
 data_frame = pd.read_csv('winemag-data_first150k.csv')
 data_frame.drop(columns=["Unnamed: 0"], inplace=True)
-# data_frame.dropna(inplace=True)
+data_frame.dropna(inplace=True)
 data_frame = fill_na_with_mean(data_frame)
 print("Описание датасета:", data_frame.info, sep="\n")
 print("Колонки:", data_frame.columns, sep="\n")
@@ -163,7 +163,7 @@ classify_data_types_and_create_new_variable(data_frame)
 create_frequency_table_and_compare_means(data_frame)
 calculate_descriptive_statistics(data_frame)
 calculate_z_scores_and_discuss_outliers(data_frame)
-# data_frame = data_frame[abs(data_frame['price_z_score']) <= 3]
+data_frame = data_frame[abs(data_frame['price_z_score']) <= 3]
 calculate_correlation(data_frame)
 plot_histogram_range(data_frame)
 plot_scatter(data_frame)
