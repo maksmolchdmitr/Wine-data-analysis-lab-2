@@ -68,7 +68,7 @@ def calculate_descriptive_statistics(df):
     Для переменной "price" лучше всего подходит mean в качестве меры центральной тенденции.
     Т.к. распределение цен довольно симметрично вокруг среднего значения, и нет существенных
     признаков наличия выбросов или сильной асимметрии.
-    (Среднее значение цен (37.55) расположено довольно близко к медиане (32.00))
+    (Среднее значение цен (33.13) расположено довольно близко к медиане (26.00))
 """)
 
 
@@ -138,7 +138,7 @@ def linear_regression(df):
 def logistic_regression(df):
     # Подготовить данные для логистической регрессии
     X = df[["points", "price"]]
-    y = df["country"]
+    y = df["country"] == 'US'
 
     # Разбить данные на обучающую и тестовую выборки
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
@@ -153,9 +153,10 @@ def logistic_regression(df):
     print(f"Точность модели: {accuracy}")
 
 
+pd.set_option('display.max_columns', 500)
 data_frame = pd.read_csv('winemag-data_first150k.csv')
 data_frame.drop(columns=["Unnamed: 0"], inplace=True)
-data_frame.dropna(inplace=True)
+# data_frame.dropna(inplace=True)
 data_frame = fill_na_with_mean(data_frame)
 print("Описание датасета:", data_frame.info, sep="\n")
 print("Колонки:", data_frame.columns, sep="\n")
